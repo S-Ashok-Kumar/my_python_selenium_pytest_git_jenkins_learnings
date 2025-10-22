@@ -1,0 +1,19 @@
+
+
+
+git clone: If there is no project in the local repository then we have to use it.
+
+Prerequisite:
+-------------
+1. Download the git shell to the system based on your OS type.
+2. Create a GitHub account
+3. Create a new repository
+
+To clone project from GitHub:
+------------------------------
+1. Create a folder/Open the folder where you want to clone the project.
+    EX: C:\Users\ashok\PycharmProjects\cloned_project
+2. Right click -> Show more options -> open git bash here.
+3. Then enter below command to clone the project.
+    Syntax: git clone URLofGitHubRepo
+    git clone https://github.com/S-Ashok-Kumar/my_python_selenium_pytest_git_jenkins_learnings.git
