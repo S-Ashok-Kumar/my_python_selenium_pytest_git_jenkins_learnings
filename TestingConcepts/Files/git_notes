@@ -1,7 +1,51 @@
-
-
-
 git clone: If there is no project in the local repository then we have to use it.
+
+
+To Push/commit files from local repo to GitHub remote environment:
+------------------------------------------------------------------
+1. Select correct path which you want to commit/push.
+    Syntax: cd <path>
+    EX: $ cd C:/Users/ashok/PycharmProjects/cloned_project/my_python_selenium_pytest_git_jenkins_learnings
+2. To create a new branch
+    Syntax: git checkout -b feature/<some-meaningful-name>
+    EX: $ git checkout -b feature/pybasics-modules
+3. Switching between the branches
+    Syntax: git checkout feature/<some-meaningful-name>
+    EX: $ git checkout feature/pybasics-modules
+4. To get the status what are all the files not committed/committed.
+    Syntax: $ git status
+5. To add files to staging
+    Syntax: git add . (. includes all the files)
+            git add <file_names> (<file_name>-give specific file path)
+            git add <file_name1> <file_name2> (To add multiple files by giving spaces)
+    EX: $ git add .
+6. To Restore/remove from staging (if you accidentally added wrong file)
+    Syntax: $ git restore --staged <file_name>
+    EX: $ git restore --staged TestingConcepts/python_for_testers15.py
+7. To commit the staged changes
+    Syntax: git commit -m "<commit_id>: Meaningful_name"
+    EX: $ git commit -m "[7+16-15]: loops,conditional statements,emptyfile-oops,moduleex,filehandling"
+8. Upstream the newly created branch (It will create a branch in GitHub repo)
+    Syntax: git push --set-upstream origin <branch_name>
+    EX: git push --set-upstream origin feature/pybasics-modules
+9. To push the code to the GitHub repo.
+    Syntax: git push
+
+Before pushing the code to (GitHub) main branch from the local repo.
+Always, its a good practice to pull all the changes from the main
+branch to the local repo then push the code to main branch
+
+$ git pull
+$ git merge main
+$ git merge feature/pybasics-modules
+
+
+
+
+
+
+
+
 
 Prerequisite:
 -------------

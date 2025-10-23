@@ -21,7 +21,8 @@ lis = [65, 78, 989, 877, 8787]
 for i in lis:
     f.write(str(i)+"\n")
 
+f.close()
+
 f = open(path + "Writedemo.txt", "r")
 print(f.read())     # reads all the file and prints on console
 # print(f.readline())     # Reads line by line
-f.close()
