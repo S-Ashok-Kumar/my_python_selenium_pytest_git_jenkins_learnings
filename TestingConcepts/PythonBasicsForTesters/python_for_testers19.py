@@ -4,7 +4,7 @@ Reading from XLSX files.
 """
 from openpyxl import  Workbook, load_workbook
 
-path = "C:\\Users\\ashok\\PycharmProjects\\cloned_project\\my_python_selenium_pytest_git_jenkins_learnings\\TestingConcepts\\Files\\"
+path = "/Files\\"
 wb = load_workbook(path+"sample.xlsx")
 # sh = wb.active # grab the active worksheet
 sh = wb["Sheet1"]

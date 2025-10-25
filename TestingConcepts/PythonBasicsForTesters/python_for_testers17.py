@@ -4,7 +4,7 @@ WITH Keyword: The advantage is that the file is properly closed
 AS Keyword
 """
 
-path = "C:\\Users\\ashok\\PycharmProjects\\cloned_project\\my_python_selenium_pytest_git_jenkins_learnings\\TestingConcepts\\Files\\"
+path = "/Files\\"
 with open(path+"demofile.txt", "w") as fw:
     fw.write("This file is created using WITH and AS keywords")
 

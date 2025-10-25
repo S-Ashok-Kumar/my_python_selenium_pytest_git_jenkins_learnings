@@ -14,7 +14,7 @@ Read/write: r+
 # If you don't mention the exact path, then it will create a file in same location
 # f = open("Writedemo.txt", "w")
 # If you mention the exact path, then it will create a file in that location
-path = "C:\\Users\\ashok\\PycharmProjects\\cloned_project\\my_python_selenium_pytest_git_jenkins_learnings\\TestingConcepts\\Files\\"
+path = "/Files\\"
 f = open(path + "Writedemo.txt", "r+")   # Change here "w/a/a+" and observe the changes in file
 f.write("Hello, Welcome to the Python World\n")
 lis = [65, 78, 989, 877, 8787]

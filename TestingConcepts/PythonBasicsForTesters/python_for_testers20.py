@@ -6,7 +6,7 @@ import faker
 from faker.proxy import Faker
 from openpyxl import Workbook
 
-path = "C:\\Users\\ashok\\PycharmProjects\\cloned_project\\my_python_selenium_pytest_git_jenkins_learnings\\TestingConcepts\\Files\\"
+path = "/Files\\"
 wb = Workbook()
 ws = wb.active
 # fake_data = Faker()
