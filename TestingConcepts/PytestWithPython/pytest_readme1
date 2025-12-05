@@ -1,0 +1,230 @@
+====================================================================================================
+INTRODUCTION:
+====================================================================================================
+PyTest:
+-------
+PyTest is a built-in python framework by which we can use certain features in automation.
+Features supported by pytest:
+    1. Fixtures (Ex: Common utilities)
+    2. Skip (Ex: skip the tests)
+    3. Ordering the tests
+    4. Group the tests (Ex: Sanity, Regression, smoke, and ......)
+    6. Parallel Testing
+
+Install PyTest: pre-requisite
+---------------
+Command: pip install pytest
+Open cmd -> Enter above command
+
+to specifically check pytest version            : python -m pytest --version
+: python -m pytest -v
+        Finding all test files
+                    (files named test_*.py or *_test.py)
+        Finding all test functions/classes inside those files
+        Executing them automatically
+
+        1. python
+            Runs the Python interpreter.
+        2. -m pytest
+            Tells Python to run the pytest module as a script.
+            If pytest is installed → it runs.
+        3. -v = verbose mode
+
+        Note:
+        python -m pytest -v means:
+        “Run pytest through Python, and show detailed (verbose) test output.”
+
+====================================================================================================
+Lesson-1: How to create a module? How to create Function (test cases)? How to create class?
+          test_demo1.py
+====================================================================================================
+Naming Convention:
+------------------
+1. Module (.py file)    - Name should start with "test_"
+                            Ex: test_example.py     or      example_test.py
+2. Class                - Name should start with "Test"
+                            Ex: TestClass
+3. Functions            - Test function name should start with "test_"
+                            Ex: def test_example():
+
+In pytest, we don’t need to manually call functions or create objects for classes to run tests.
+Pytest automatically discovers and executes them based on naming conventions.
+
+====================================================================================================
+Lesson-2:   Fixtures
+            test_demo2_fixtures.py
+====================================================================================================
+1. Fixtures (Ex: Common utilities)
+        * Fixtures are used to create and provide common setup or utilities that multiple tests can use.
+        * @pytest.fixture
+        * Is a reusable function that can run before (and optionally after) each test.
+        * It also returns the value
+
+====================================================================================================
+Lesson-3:   Scope
+            test_demo3_scope.py, test_demo4_fixtures_return.py
+====================================================================================================
+Session -> Module -> CLass -> Methods   (If we use session)
+Module -> CLass -> Methods              (If we use class)
+Module -> Functions                     (If we don't use class)
+
+Scope="function"  - The fixture runs before each test function and ends after that test.
+                         Ex: def setup(scope="function")
+
+Scope="module"    - The fixture runs once per Python file (module)
+                  - before the first test in that file, and after all tests are done.
+                         Ex: def setup(scope="module")
+
+Scope="class"     - The fixture runs once per class, before any methods in that class, and after all are done.
+                         Ex: def setup(scope="class")
+
+Scope="session"   - The fixture runs only once per test session (entire run, across all test files).
+                         Ex: def setup(scope="session")
+
+====================================================================================================
+Lesson-4:   Yield - Close the browser, Skip the Testcases.
+            test_demo5_fixtures_yield.py, test_demo7_fixtures_skipping.py
+====================================================================================================
+Yield:
+------
+* Once a fixture uses yield, the return value is ignored.
+A fixture with yield has two parts:
+    Before the test → Setup code (runs before the test)
+    After the test → Teardown code (runs after the test)
+
+skip the testcase:
+------------------
+@pytest.mark.skip   - is a decorator used in pytest to skip a test case unconditionally.
+EX:
+    import pytest
+
+    @pytest.mark.skip
+    def test_login():
+        assert 1 == 1
+====================================================================================================
+Lesson-5:   Executing the entire package in one shot using "conftest.py"
+            Package: mypackdemo6,   Modules: test_signups.py,   Common utility: conftest.py
+                                             test_logins.py
+====================================================================================================
+conftest.py
+-----------
+This file is common for the modules (test_logins.py, test_signups.py) in same package.
+file name should be "conftest.py" (otherwise pytest didn't identify)
+This file contains only fixtures (common utilities). Can be (reusable) accessible across all the modules.
+
+test_logins.py, test_signups.py
+-------------------------------
+This two modules/files access the fixtures from "conftest.py"
+
+====================================================================================================
+Lesson-6    Grouping the testcases, Ordering the testcases
+            pytest.ini, test_demo8_grouping.py, test_demo9_ordering.py
+====================================================================================================
+test_demo8_grouping.py
+----------------------
+* You can use markers like sanity, regression, smoke, etc.,
+  to group your test cases based on the type of testing you want to run..
+* @pytest.mark.[User_defined_name]
+        Ex: @pytest.mark.Sanity
+* In place of [User_defined_name ]sanity we can use our own names (Ashok or Hello or any_name)
+
+test_demo9_ordering.py
+----------------------
+Pre-requisite: install pytest-order plugin
+Command to install: pip install pytest-order
+
+* @pytest.mark.order(Number)
+* @pytest.mark.order(before/after="Test_Case_name")
+* @pytest.mark.order("first/last")
+
+Helps to maintain the order of execution of test functions.
+
+pytest.ini  - Just learn the definition.
+----------
+pytest.ini is created to configure pytest in one central place so you don’t have to repeat settings
+or options in every command or test file.
+
+***Purpose of pytest.ini
+It is used to store global pytest configurations, such as:
+
+✔** 1. Define markers
+So pytest stops showing warnings like "PytestUnknownMarkWarning".
+
+    EX: ---mention inside pytest.ini file-----
+    [pytest]
+    markers =
+        smoke: smoke test cases
+        regression: regression test cases
+
+✔** 2. Set test discovery rules
+You can define:
+    Which files are considered tests
+    Name patterns
+    Folder patterns
+
+    EX: ---mention inside pytest.ini file-----
+        python_files = test_*.py
+        python_classes = Test*
+        python_functions = test_*
+
+✔** 3. Add default command-line options
+To avoid typing them every time.
+
+    Ex: ---mention inside pytest.ini file-----
+    addopts = -v -s --maxfail=1
+
+✔** 4. Configure logging
+
+    EX:---mention inside pytest.ini file-----
+        log_cli = true
+        log_level = INFO
+
+✔** 5. Set test paths
+So pytest only runs tests from specific directories.
+
+    EX:---mention inside pytest.ini file-----
+        testpaths =
+            tests
+            api_tests
+
+====================================================================================================
+Lesson-7:   Parallel Execution
+            test_demo10_parallel.py
+====================================================================================================
+Pre-requisite: install pytest-xdist plugin
+Command to install: pip install pytest-xdist
+
+Command to Run Parallel Execution:
+----------------------------------
+****parallel execution does NOT follow the test order.
+
+python -m pytest PytestWithPython/test_demo10_parallel.py -s -v -n 2
+                        or
+python -m pytest PytestWithPython/test_demo10_parallel.py -s -v -n=2
+-n = number of workers (helps to perform parallel testing.)
+Maximum we can provide 5 workers. Then only execution will be faster.
+If you mention more than 5 workers, it will execute slowly.
+
+====================================================================================================
+Plug-ins used in this complete package: PytestWithPython
+====================================================================================================
+pre-requisite:
+--------------
+Install PyTest for automation purpose               : pip install pytest            [Introduction]
+install pytest-order plugin for ordering testcases  : pip install pytest-order      [Lesson-6]
+install pytest-xdist plugin for parallel execution  : pip install pytest-xdist      [Lesson-7]
+
+====================================================================================================
+Decorators used in this complete package: PytestWithPython
+====================================================================================================
+Fixtures:
+@pytest.fixture     → create setup/teardown
+scope='function'    → every test
+scope='class'       → once per class
+scope='module'      → once per test file
+scope='session'     → once per full test run
+
+Markers:
+@pytest.mark.skip                           → skip test
+@pytest.mark.sanity / regression / smoke    → group tests
+@pytest.mark.order(n)                       → set test execution order
