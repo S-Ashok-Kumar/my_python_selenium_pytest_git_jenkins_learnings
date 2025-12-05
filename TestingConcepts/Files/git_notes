@@ -29,7 +29,7 @@
     origin → remote repository name.
     main → branch name you are pushing to.
 
-7. Check all branches:
+7. To see all the branches created:
     Syntax: git branch -a
 
 8. To create a new branch and move to it immediately.
@@ -160,3 +160,26 @@ git checkout main
 git pull origin main    # ensure main is up to date
 git merge feature-login # bring feature branch changes into main
 git push origin main    # push merged code to GitHub
+
+
+Deleting Branches in Local as well as remote (if required):
+===========================================================
+Delete Local branch you don't want:
+git branch -D <feature_branch/sub_branch>                      [Ex: feature/dummy-testmodule]
+
+Delete remote branches you don’t want:
+git push origin --delete <feature_branch/sub_branch>           [Ex: feature/dummy-testmodule]
+
+
+Renaming the Branch:
+===========================================================
+[Make sure you are in main branch]
+
+Rename the branch locally:  git branch -m <Old_Branch_Name> <New_Branch_Name>
+                       EX:  git branch -m feature/playwrite-python  feature/test-frameworks
+
+Delete the old branch from the remote:  git push origin --delete <Old_Branch_Name>
+                                   Ex:  git push origin --delete feature/playwrite-python
+
+Push the renamed branch to remote and set upstream: git push -u origin <New_Branch_Name>
+                                                EX: git push -u origin feature/test-frameworks
