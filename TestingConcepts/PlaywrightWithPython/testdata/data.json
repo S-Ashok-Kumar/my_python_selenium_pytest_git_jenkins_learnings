@@ -1,0 +1,22 @@
+[
+  {
+    "email": "nani00889791@gmail.com",
+    "password": "Fall@2025",
+    "validity": "valid"
+  },
+  {
+    "email": "randomf@gmail.com",
+    "password": "Fall@2520",
+    "validity": "invalid"
+  },
+  {
+    "email": "validuser@gmail.com",
+    "password": "test@2025",
+    "validity": "invalid"
+  },
+  {
+    "email": "",
+    "password": "",
+    "validity": "invalid"
+  }
+]

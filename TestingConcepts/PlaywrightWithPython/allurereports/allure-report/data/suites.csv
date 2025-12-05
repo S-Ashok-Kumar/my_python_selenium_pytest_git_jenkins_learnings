@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1395","test_url[chromium]","","2025-12-01","passed","2025-12-01","","test_pw_sample_16","",""
+"","1072","test_google_search[chromium]","","2025-12-01","passed","2025-12-01","","test_pw_sample_16","",""
+"","5563","test_bing_search[chromium]","","2025-12-01","failed","2025-12-01","","test_pw_sample_16","",""
+"","1706","test_Title[chromium]","","2025-12-01","passed","2025-12-01","","test_pw_sample_16","",""
