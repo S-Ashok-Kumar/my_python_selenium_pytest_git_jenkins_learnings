@@ -1,0 +1,556 @@
+==============================================================================================================
+Introduction:
+==============================================================================================================
+Focus on ****IPI**** Important Points for Interviews
+
+Playwright Introduction:
+------------------------
+What/why is Playwright?
+* open source   - No licence (freely available).
+                - We can use existing tools.
+                - Also we can add additional libraries to the tool.
+* Owned by Microsoft.
+* It is for web browser automation, also supports API Testing
+* Playwright a framework for automating web browsers, enabling end-to-end testing.
+    End to End Testing Meaning:
+        for suppose ecommerce application:
+            Includes web and api testing.
+            workflow from starting to end.
+            EX:
+            customer Registration - Login to the application - Search or filter the product
+            - Add to cart - payment - payment conformation - checking orders.
+* Beyond browser automation, playwright offers a dedicated API for testing and interacting with web APIs.
+* API Testing using playwright - Programming knowledge is required.
+* Supporting languages - JavaScript/TypeScript, Python, Java, .NET
+* Released in the year 2020.
+
+****IPI - Important Points for Interviews
+open source tool by Microsoft, used for web browser automation as well as API automation.
+Supports JavaScript/TypeScript, Python, Java, .NET programming languages
+Released in 2020
+Purely supports for functional testing
+****
+
+Playwright vs Selenium:
+-----------------------
+    some features in playwright is not available in selenium that is why playwright is popular in the market.
+
+Main 3 features in selenium (famous for):
+-----------------------------------------
+    1. Cross-browser Testing. (meaning - multiple browser support - chrome, firefox, safari, edge, opera, IE)
+    2. Cross-platform. (meaning - Different operating systems - Windows, Mac, Unix, Linux)
+    3. Cross-language support. (meaning - supports multiple programming languages - JavaScript, Python, Java, Ruby, .NET, C#)
+
+Features in playwright also present in Selenium:
+------------------------------------------------
+    1. Cross-browser Testing. (meaning - multiple browser support - chrome, firefox, safari, edge, opera, IE)
+    2. Cross-platform. (meaning - Different operating systems - Windows, Mac, Unix, Linux)
+    3. Cross-language support. (meaning - supports multiple programming languages - JavaScript/TypeScript, Python, Java, C#)
+
+    **** (Below points are common in both playwright and selenium, but in selenium we need to depend on external tools/libraries to achieve certain tasks)
+    4. Supports Web application testing, API Testing, Mobile web testing (not Mobile apps) and experimental support
+            for android automation.
+    5. API Testing: built-in API testing, allowing you to test backend APIs together.
+    6. Auto-waiting mechanism: Playwright waits for elements to be ready before performing actions. reducing test flakiness
+            (no need to use any waiting commands like implicit, explicit, sleep, fluent)
+            flakiness - (meaning - inconsistent working of testcase (fail, pass, pass, fail, pass))
+    7. Handles Complex Elements: Easily interacts with shadow DOM elements, which are tricky for other tools.
+    8. Parallel Execution: Supports running tests simultaneously in multiple browser instances for faster execution.
+            (Note: Where as in selenium need to depend on TestNG)
+    9. Built-in Reporters: Provides various report formats like HTML, JSON, JUnit, and more. Supports third-party reporting tools like Allure.
+    ****
+
+    ****IPI
+    Supports Cross-browser Testing,
+    Cross platform testing,
+    cross languages support,
+    Supports web-application testing,
+    In-built APIs for API testing (selenium don't support),
+    Support Mobile web testing (selenium don't support),
+    Auto-waiting mechanism - reduces flakiness (No need to use Implicit, explicit, fluent waits like selenium),
+    Easily interact with shadow DOM elements (Selenium has limited support. Requires JavaScript execution (not direct element access).),
+    parallel Execution (In selenium depends on TestNG),
+    Built-in reports: HTML, JSON, JUnit and more (Selenium don't support),
+    Third-party reporting tools like Allure.
+    ****
+
+****IPI
+Advanced Features in playwright which is not in selenium (famous for):
+----------------------------------------------------------------------
+    1. Inspector: Helps debug tests by showing click points and verify locators in run time.
+    2. Code Generation (Codegen): The codegen tool records your actions and converts them into test scripts in any supported language.
+    3. Tracing (Trace Viewer): Captures Screenshots, records videos, retries flaky tests, and logs steps automatically.
+                               Capture all the information to investigate the test failure.
+****
+
+==============================================================================================================
+Date: 27/11/2025
+Lesson-01   test_playwright_01.py, test_playwright_async_01.py
+==============================================================================================================
+Playwright:
+-----------
+- Supports both web and API testing.
+- Need to install plugin for playwright
+- Pytest : Testing framework developed using Python
+- Playwright is available as a plugin on top of Pytest.
+
+Pre-requisites:
+---------------
+pip install pytest                  => Installs pytest, a popular testing framework used for:
+                                       writing test cases
+                                       automation testing (API, UI, unit tests)
+                                       Pytest is not only for web automation, it is a general testing framework.
+
+pip install pytest-playwright       => Installs the pytest plugin for Playwright.
+                                       It provides:
+                                       pytest fixtures (page, browser, context)
+                                       browser launch integration
+                                       tracing, screenshots
+                                       auto-handling of browser lifecycle
+
+pip install playwright              => Installs Playwright Python library + downloads browsers (Chromium, Firefox, WebKit).
+pip install pytest-playwright -U    => Update playwright to latest version
+
+Chrome - internally runs Chromium engine
+Edge - internally runs Chromium engine
+Firefox - internally runs Firefox engine
+Safari - internally runs Webkit engine
+
+Synchronous vs Asynchronous:
+----------------------------
+Asynchronous: Uses await, Used in raw Playwright scripts, You control the browser, context, page.,
+Synchronous-like (Playwright Test): Still async underneath, Cleaner syntax, Test runner manages everything,
+                                    Auto-waits built-in
+
+To run in parallel mode: In pytest we have (x-dist) plugin
+                         install x-dist
+
+To execute in parallel in pytest:
+---------------------------------
+python -m pytest PlaywrightWithPython/test_playwright_01.py -s -v --headed -n=2
+                        or
+python -m pytest PlaywrightWithPython/test_playwright_01.py -s -v --headed -n 2
+
+==============================================================================================================
+Date: 27/11/2025
+Lesson-02   test_pw_locators_02.py
+==============================================================================================================
+Locators:
+---------
+1) Identifying/Locating the web elements (web objects)
+2) Performing actions
+3) validations
+
+Locating the elements:
+---------------------
+1) Playwright built-in locators
+2) X-path
+3) CSS
+
+1) Playwright built-in locators:
+--------------------------------
+page.getByRole()            to locate by explicit and implicit accessibility attributes.
+page.getByText()            to locate by text content.
+page.getByLabel()           to locate a form control by associated label's text.
+page.getByPlaceholder()     to locate an input by placeholder.
+page.getByAltText()         to locate an element, usually image, by its text alternative.
+page.getByTitle()           to locate an element by its title attribute.
+page.getByTestId()          to locate an element based on its data-testid attribute (other attributes can be configured).
+
+List of common HTML elements and their corresponding ARIA(Accessible Rich Internet Applications) roles:
+HTML Element                            ARIA Role
+__________________________________________________
+<a href="...">                          link
+<area href="...">                       link
+<button>                                button
+<form> (with name attribute)            form
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6>      heading
+<header>                                banner (context-specific)
+<img> (with alt)                        img
+<input type="button">                   button
+<input type="checkbox">                 checkbox
+<input type="email">                    textbox
+<input type="password">                 textbox
+<input type="radio">                    radio
+<input type="range">                    slider
+<input type="reset">                    button
+<input type="search">                   searchbox
+<input type="submit">                   button
+<input type="text">                     textbox
+<li>                                    listitem
+<ol>, <ul>                              list
+<option>                                option
+<select>                                listbox (or combobox, depends on usage)
+<table>                                 table
+<tbody>, <thead>, <tfoot>               rowgroup
+<td>                                    cell
+<th>                                    columnheader or rowheader
+<textarea>                              textbox
+<tr>                                    row
+
+==============================================================================================================
+Date: 27/11/2025
+Lesson-03   test_pw_csslocators_03.py
+==============================================================================================================
+CSS Selectors/Locators
+-----------------------
+- Cascading style sheets (CSS).
+- This locators are mostly used in playwright.
+- Worked based on DOM
+
+- Types of CSS locators:
+        Absolute CSS Locators
+        Relative CSS Locators
+
+==============================================================================================================
+Date: 27/11/2025
+Lesson-04   test_pw_xpathlocators_04.py, test_pw_dynamicxpaths_04.py
+==============================================================================================================
+X-Path - XML path Language, DOM - Document Object Model
+1) Absolute Xpath Locators (Full Xpath)
+    Ex: /html[1]/body[1]/div[4]/div[1]/div[1]/div[3]
+2) Relative Xpath Locators
+
+Gdrive: https://drive.google.com/file/d/1ZXRQSWxcWlDTjWBHLEWA6a4juASkUs9C/view?usp=drive_link
+
+==============================================================================================================
+Date: 27/11/2025
+Lesson-05   test_pw_actions_05.py, test_pw_radiobuttons_05.py, test_pw_checkboxes_05.py
+==============================================================================================================
+Refer python .py modules (mentioned above) you get more information.
+
+==============================================================================================================
+Date: 28/11/2025
+Lesson-01 to Lesson-05 Revision
+==============================================================================================================
+"""
+Methods:
+fill("sendkeys-value")      - Used to write values in the text areas.
+count()                     - Returns the total length
+check()                     - checks the radio button/ checkboxes
+uncheck()                   - unchecks the radio button/ checkboxes
+is_checked()                - returns True if the checkbox is selected, False if not selected.
+text_content()              - Returns specific element which matches the locator
+first.text_content()        - Returns first element which matches the locator
+last.text_content()         - Returns last element which matches the locator
+nth(index).text_content()   - Returns nth(index) element which matches the locator
+all_text_contents()         - Returns a list of web elements
+get_attribute("attribute")  - Returns value
+input_value()               - Returns what value we passed into the textarea.
+"""
+
+"""
+Assertions:
+to_be_visible()
+to_be_enabled()
+to_be_checked()     - Verify the radio button/checkbox are selected
+not_to_be_checked()     - Verify the radio button/checkbox are not selected
+to_have_url("url")
+to_have_title("title_name_you_want_to_verify")
+to_have_text("value_you_want_to_verify")
+to_have_count("total_length.count()")
+to_have_attribute("attribute","Value")
+"""
+
+==============================================================================================================
+Date: 28/11/2025
+Lesson-06   test_pw_single_select_dropdowns_06.py, test_pw_multi_select_dropdowns_06.py,
+            test_pw_sorted_dropdowns_06.py
+==============================================================================================================
+Handle Dropdowns:
+-----------------
+Have "Select" tag
+Options are embedded in 'Option' tags
+
+    Single select dropdown
+    Multi select dropdown
+
+3 ways to select option from the dropdown
+By label    : select_option(label="India")
+By Value    : select_option(value="germany")
+By Index    : select_option(index=4)
+
+==============================================================================================================
+Date: 28/11/2025
+Lesson-07   test_pw_bootstrap_dropdowns_07.py, test_pw_imp_methods_07.py
+==============================================================================================================
+Bootstrap:
+----------
+Have "div" or "button" tags
+options are embedded inside the 'div' tags
+
+Hidden Dropdowns:
+-----------------
+Options are hidden from the DOM
+
+
+==============================================================================================================
+Date: 29/11/2025
+Lesson-06, Lesson-07 Revision
+==============================================================================================================
+"""
+Methods:
+click() - Used to click on the element where the locator is pointing
+all_text_contents() - returns list of all the elements which matches the locator
+text_content() - returns a single/specific element which matches the locator
+count()             - returns total count of elements which matches the locator
+select_option(label="<provide label here>") - Used for single selection dropdown by using label
+select_option(value="<provide value here>") - Used for single selection dropdown by  using value
+select_option(label="<provide index here>") - Used for single selection dropdown by  using index
+select_option(label="<provide list of labels here>") - Used for multi selection dropdown by  using label
+select_option(value="<provide list of values here>") - Used for multi selection dropdown by using value
+select_option(label="<provide list of indexes here>") - Used for multi selection dropdown by using index
+locator("<Pass css/xpath here>") -Helps to find the element on the webpage.
+copy() - python method used to create copy of original list.
+sorted() - python method used to sort the list in ASCENDING/DESCENDING.
+"""
+"""
+Differences:
+inner_text() vs text_content():
+    inner_text()   # returns actual text
+    text_content() # returns content with special chars and spaces
+
+all_inner_texts() vs all_text_contents()
+    all_inner_texts()   # returns the list of actual text
+    all_text_contents() # returns the list of content with special chars and spaces
+
+all()
+    Returns objects (ElementHandles).
+    You must extract text manually.
+"""
+
+"""
+Assertions:
+to_have_count(<provide count you are expecting>)
+"""
+
+==============================================================================================================
+Date: 29/11/2025
+Lesson-08   test_pw_static_tables_08.py, test_pw_dynamic_tables_08.py, test_pw_pagination_tables_08.py
+==============================================================================================================
+Static Web Tables:
+------------------
+No change in columns
+No change in rows
+No changes in data
+
+Dynamic web Tables:
+-------------------
+change in columns
+change in rows
+changes in data
+
+Pagination web Tables:
+----------------------
+first 10 records in one page
+other 10 records in another page
+other 10 records in another page
+
+==============================================================================================================
+Date: 29/11/2025
+Lesson-09   test_pw_jquery_datepicker_09.py, test_pw_bootstrap_datepicker_09
+==============================================================================================================
+Handle jQuery and Bootstrap Date Pickers:
+-----------------------------------------
+
+==============================================================================================================
+Date: 29/11/2025        # Remember alert/dialog is different and popup is different.
+Lesson-10   test_pw_simple_dialog_box_10.py, lambda_demo_dialogbox_10.py [Python file]
+            test_pw_conformation_dialog_box_10.py, text_pw_prompt_dialog_box_10.py, test_pw_frames_10.py,
+            test_pw_inner_frames_10.py
+==============================================================================================================
+Handle Dialogs and Frames:
+---------------------------
+3 types like alerts:
+- If alert is open then we cannot perform any actions, we need to handle alert.
+- Because the alerts thrown by browser (Javascript) not website.
+- We need to depend on some functions.
+
+Simple alert    -> We can only accept the alert "OK"
+Conformation alert  -> We can "cancel" or "Ok" (accept) the alert
+prompt alert    ->  Allows to pass the text and "cancel" or "OK" (accept) the alert
+
+Frames:
+-------
+- to interact with the elements inside the frames we need to handle the frames first.
+- One frame can contain another frame.
+
+==============================================================================================================
+Date: 29/11/2025
+Lesson-11   test_pw_mouse_actions_11.py
+==============================================================================================================
+Mouse Actions:
+--------------
+normal click
+Right click
+Double click
+drag and drop
+
+==============================================================================================================
+Date: 30/11/2025
+Lesson-12   test_pw_keyboard_actions_12.py, test_pw_working_with_files_12
+==============================================================================================================
+Keyboard Actions:
+-----------------
+CTRL+A
+CTRL+C
+CTRL+V
+esc
+tab
+....
+....
+....
+
+File Upload/Download:
+---------------------
+
+==============================================================================================================
+Date: 30/11/2025        # Remember alert/dialog is different and popup is different.
+Lesson-13   test_pw_browser_context_13.py, test_pw_popups_13.py, test_pw_auth_popup_13.py,
+            test_pw_tabs_13.py
+==============================================================================================================
+Browsers vs Page vs Context:
+---------------------------
+- Browsers = Chrome, Edge, Safari...
+- page = Every browser can open multiple tabs called page.
+         A page can be new tab or a pop-up or a window
+- Context (means different profiles (email account login with)) - To maintain privacy.
+  Context is between Browser and pages
+  Browser -----> Context (user profile) -----> pages
+- Automation by default creates their own context.
+- If we didn't mention any Browser/context by default playwright uses Chromium browser/context
+
+==========================================================================================================
+Note:
+==========================================================================================================
+Events
+--------
+
+alert/dialog    =   dialog
+download files  =   download
+popups          =   popup
+tabs            =   page
+
+page.on()
+
+==============================================================================================================
+Date: 30/11/2025        Specific to only Playwright
+Lesson-14               test_pw_video_recording_14.py, test_pw_screenshots_14.py, test_pw_tracing_14.py
+                        test_pw_flaky_14.py, test_demo_video_ss_trace_14
+==============================================================================================================
+Capture Videos, Screenshots, Trace viewer & Handle Flaky tests:
+---------------------------------------------------------------
+Capture tracing through code
+Capture video through code
+Capture screenshot through code
+Auto Retry (Rerun)
+    flaky tests - test case sometimes fail and sometime pass, because of unstable
+                 - Based on the count we provide it will retry the failed test case.
+                   if testcase is passed in first time only then the execution will be quit
+                 - To achieve auto retrieve in playwright, we need to install a plugin.
+                    Plug-in: pytest-rerunfailures
+                    pip install pytest-rerunfailures
+
+
+We can achieve all the above actions (Tracing, video, screenshot, ) in a single shot by using config file.
+Disadvantage of pytest.ini:
+            Cannot provide the path where to store videos, tracing, screenshot
+            Used to execute with CMD
+
+Advantages of pytest.ini:
+            We can provide different options in pytest.ini
+
+==============================================================================================================
+Date: 30/11/2025        test_pw_datadriven_items_15.py, test_pw_datadriven_login_15.py,
+Lesson-15               test_pw_datadriven_login_json_15.py, test_pw_datadriven_login_csv_15,
+                        test_pw_datadriven_login_excel_15.py, pytest.ini
+==============================================================================================================
+Data Driven Testing:
+--------------------
+Testing driven by data
+To cover both positive scenarios and negative scenarios (Repeat the same test case multiple times).
+In testNG we have dataprovider.
+Here in playwright don't have any features for this DDT but we can use pytest.
+
+==============================================================================================================
+Date: 30/11/2025        test_pw_sample_16.py, conftest.py, pytest.ini, generates myreport.html
+Lesson-16
+==============================================================================================================
+Generating Pytest & Allure Reports:
+-----------------------------------
+- playwright-python doesn't have the native support feature to generate reports.
+  Where as playwright-typescript and playwright-javascript does support.
+- So we generate reports using pytest.
+- Also allure reports are popular now a days and used for report generation using python.
+- So to generate the reports we need to download plugins:
+        - pytest-html plugin
+        --------------------
+                * step-1: Install the plugin [pip install pytest-html]
+                * step-2: Configure pytest.ini
+                            [pytest]
+                            addopts = --headed
+                                      --browser=chromium
+                                      --video=retain-on-failure
+                                      --screenshot=only-on-failure
+                                      --tracing=retain-on-failure
+                                      --html=myreport.html --self-contained-html --capture=tee-sys
+
+                * step-3: Create sample tests
+                * step-4: Run the tests and generate report.
+                * step-5: Attach screenshots on Test Failure (conftest.py) - additional steps
+
+        - Allure reports
+        -----------------
+                * step-1: Install Allure Pytest plugin [pip install allure-Pytest]
+                * step-2: Install Allure Command-Line Tool (to view and generate reports)
+                          windows: https://github.com/allure-framework/allure2/releases
+                * step-3: Configure Allure in pytest.ini
+                          --alluredir=PlaywrightWithPython/allurereports/allure-results
+                * step-4: Create and Run your test.
+                * step-5: Generate and View the Allure Reports
+                * step-6: Attach screenshots on test failures (conftest.py)
+
+
+====================================================================================================
+Plug-ins used in this complete package: PlaywrightWithPython
+====================================================================================================
+pre-requisite:
+--------------
+pip install pytest	                        Installs pytest testing framework                   [Lesson-1]
+pip install playwright	                    Installs Playwright Python library + browsers       [Lesson-1]
+pip install pytest-playwright	            Installs pytest plugin for Playwright               [Lesson-1]
+pip install pytest-playwright -U	        Updates pytest-playwright plugin to latest version  [Lesson-1]
+pip install pytest-asyncio                  Used for asynchronous execution                     [Lesson-1]
+pip install pytest-xdist                    Used for parallel execution                         [Lesson-2]
+
+====================================================================================================
+Using Lambda function to handle ALERTS,
+====================================================================================================
+ALERT:
+------
+
+Simple-Alert/Dialog box:
+------------------------
+step-1: Need to register an event before clicking on the alert button.
+# Registering an event
+    def handle_dialog(dialog):
+        dialog.accept()
+    page.on("dialog", handle_dialog)
+
+            (OR)
+
+# Registering an event
+    page.on("dialog", lambda dialog:dialog.accept())    #lambda parameters: expression
+
+
+Conformation-Alert/Dialog box:
+------------------------------
+# page.on("dialog", lambda dialog:dialog.accept())    # It is to accept the alert
+  page.on("dialog", lambda dialog: dialog.dismiss())  # It is to dismiss the alert
+
+
+Prompt-Dialog box/Alert:
+------------------------
+# Registering an event
+    page.on("dialog", lambda dialog:dialog.accept("John"))    # It is to pass value & accept the alert
+    # page.on("dialog", lambda dialog: dialog.dismiss())  # It is to dismiss the alert
