@@ -1,63 +1,162 @@
-git clone: If there is no project in the local repository then we have to use it.
+🧭 1️⃣ cd
+    Meaning: Change Directory — used to move into the folder (project) where your code is located.
+    Example: cd C:\Users\Ashok\PycharmProjects\MyProject
 
+🧾 2️⃣ git add ./filenames
+            or
+      git add .
+    Meaning: Adds files from your working directory to the staging area, preparing them for commit.
+    . → means all files, ./filenames → means specific files
 
-To Push/commit files from local repo to GitHub remote environment:
-------------------------------------------------------------------
-1. Select correct path which you want to commit/push.
-    Syntax: cd <path>
-    EX: $ cd C:/Users/ashok/PycharmProjects/cloned_project/my_python_selenium_pytest_git_jenkins_learnings
-2. To create a new branch
-    Syntax: git checkout -b feature/<some-meaningful-name>
-    EX: $ git checkout -b feature/pybasics-modules
-3. Switching between the branches
-    Syntax: git checkout feature/<some-meaningful-name>
-    EX: $ git checkout feature/pybasics-modules
-4. To get the status what are all the files not committed/committed.
-    Syntax: $ git status
-5. To add files to staging
-    Syntax: git add . (. includes all the files)
-            git add <file_names> (<file_name>-give specific file path)
-            git add <file_name1> <file_name2> (To add multiple files by giving spaces)
-    EX: $ git add .
-6. To Restore/remove from staging (if you accidentally added wrong file)
+🧩 3️⃣ git commit -m "message"
+    Meaning: Saves (commits) the staged changes into the local (System/pc) Git history with a message describing the change.
+    -m → stands for message
+    Example: git commit -m "Added login feature"
+
+🌐 4️⃣ git remote add origin <URL>
+    Meaning: Links your local repository to a remote GitHub repository.
+    remote → refers to the online repository (like GitHub).
+    add → adds a connection to that remote.
+    origin → a default name given to the remote repository (you can change it, but “origin” is standard).
+
+🌳 5️⃣ git branch -M main
+    Meaning: Renames the current branch to main.
+    -M → stands for move/rename forcefully (it overwrites if “main” already exists).
+
+🚀 6️⃣ git push -u origin main
+    Meaning: Uploads (pushes) your local commits to the remote repository (origin) on the main branch.
+    -u → sets the upstream connection, so in future you can just use "git push" without typing the full command again.
+    origin → remote repository name.
+    main → branch name you are pushing to.
+
+7. Check all branches:
+    Syntax: git branch -a
+
+8. To create a new branch and move to it immediately.
+    git checkout → used to switch branches, -b → stands for branch (tells Git to create a new one).
+    Syntax: git checkout -b <new-branch-name>
+    EX: git checkout -b feature-login
+
+9. To create the same branch on GitHub and links it with the local branch for future pushes and pulls.
+    Syntax: git push --set-upstream origin <new_feature_name>
+    EX: git push --set-upstream origin feature-login
+    git push → uploads your commits to GitHub
+    --set-upstream/-u → links your local branch with the remote branch so next time you can just type git push or git pull
+    origin → the name of your remote repository (GitHub)
+    feature-login → your branch name
+
+10. To Restore/remove from staging (if you accidentally added wrong file)
     Syntax: $ git restore --staged <file_name>
     EX: $ git restore --staged TestingConcepts/python_for_testers15.py
-7. To commit the staged changes
-    Syntax: git commit -m "<commit_id>: Meaningful_name"
-    EX: $ git commit -m "[7+16-15]: loops,conditional statements,emptyfile-oops,moduleex,filehandling"
-8. Upstream the newly created branch (It will create a branch in GitHub repo)
-    Syntax: git push --set-upstream origin <branch_name>
-    EX: git push --set-upstream origin feature/pybasics-modules
-9. To push the code to the GitHub repo.
-    Syntax: git push
 
-Before pushing the code to (GitHub) main branch from the local repo.
-Always, its a good practice to pull all the changes from the main
-branch to the local repo then push the code to main branch
+12. git fetch:
+    Syntax: git fetch origin
+    git fetch downloads the latest changes from all remote branches and updates your remote-tracking branches in your local repository.
+    It does not modify your current working branch — you must merge or rebase to apply the changes.
 
-$ git pull
-$ git merge main
-$ git merge feature/pybasics-modules
+13. git pull:
+    Downloads commits from the remote repository and immediately merges them into your current branch.
+    Equivalent to git fetch + git merge in one step
+    Updates your working files immediately
+    Could lead to merge conflicts if local changes differ from remote
 
-
-
-
-
-
-
-
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 Prerequisite:
--------------
+=============
 1. Download the git shell to the system based on your OS type.
-2. Create a GitHub account
+2. Create a GitHub account (In website)
 3. Create a new repository
 
-To clone project from GitHub:
-------------------------------
-1. Create a folder/Open the folder where you want to clone the project.
-    EX: C:\Users\ashok\PycharmProjects\cloned_project
-2. Right click -> Show more options -> open git bash here.
-3. Then enter below command to clone the project.
-    Syntax: git clone URLofGitHubRepo
-    git clone https://github.com/S-Ashok-Kumar/my_python_selenium_pytest_git_jenkins_learnings.git
+push your local code to GitHub for the first time:
+==================================================
+1. Go to your project folder
+Syntax: cd path/to/your/project
+EX: cd C:\Users\Ashok\PycharmProjects\MyProject
+
+2. Initialize Git (if not already done) - This makes your local folder a Git repository.
+Syntax: git init
+
+3. Add your files to Git tracking
+Syntax: git add .           (. means add all files)
+                or
+Syntax: git add filename1 filename2......   (folder name/filename means add specific files))
+
+4. Commit your code
+Syntax: git commit -m "Initial commit"      (You can write meaningful name inside "...text...")
+
+5. Link your local repo to GitHub (remote repository)
+Syntax: git remote add origin https://github.com/yourusername/your-repo-name.git
+
+6. Push your code to GitHub.    (If your GitHub repo is new and empty, push the main branch)
+Syntax: git branch -M main
+        git push -u origin main
+
+Your code is now uploaded to GitHub. Next time, just use:
+=========================================================
+git add .
+git commit -m "your message"
+git push
+
+To Clone Project from GitHub to local
+======================================
+Clone (in Git):
+Cloning means creating a local copy of a remote Git repository (like from GitHub) on your computer.
+It downloads all the project files, history, and branches so you can work on them locally.
+
+Steps for cloning:
+1. Open Terminal / Command Prompt / Git Bash
+
+2. Navigate to the folder where you want to keep the project
+Syntax: cd path/to/your/folder
+EX: cd C:\Users\Ashok\PycharmProjects
+
+3. Clone the repository using its GitHub URL
+Syntax: git clone https://github.com/username/repository-name.git
+
+Creating a new branch (feature) using main branch:
+==================================================
+git checkout main               # ensure you are on main
+git pull origin main            # ensure main is updated
+git checkout -b feature-login
+git add .
+git commit -m "Added feature login functionality"
+git push --set-upstream origin feature-login
+
+✅ 1️⃣ Update feature branch with latest changes from main
+==========================================================
+(Keep your feature branch up to date with main)
+
+- currently we are in feature-login branch
+
+Optional steps:
+-------------------------------------
+| git add .                         |
+| git commit -m "Save current work" |
+-------------------------------------
+
+git checkout main
+git pull origin main        #It fetches the latest changes from the remote main branch on GitHub and updates your local main branch.
+git checkout feature-login
+git merge main              # merge main → feature     # bring main branch changes into your feature branch
+
+Meaning: You are pulling all new updates from the main branch (done by others)
+and merging them into your working branch feature-login.
+
+✅ 2️⃣ Update main branch with changes from feature branch
+==========================================================
+(After your feature is done and tested, merge it into main)
+
+--------------------------------------------------------------------------------------------------------------
+| git checkout feature-login                                                                                 |
+|                                                                                                            |
+| # Below 2 commands are required only if you have pending changes in feature-login:                         |
+| git add .                                                                                                  |
+| git commit -m "Final feature updates"           # If your code is already committed, you don’t need them.  |
+--------------------------------------------------------------------------------------------------------------
+
+git checkout main
+git pull origin main    # ensure main is up to date
+git merge feature-login # bring feature branch changes into main
+git push origin main    # push merged code to GitHub

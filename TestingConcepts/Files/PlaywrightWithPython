@@ -1,0 +1,46 @@
+INDEX:
+
+Practice Site: Ecommerce: https://practice.qabrains.com/ecommerce-site
+
+playwright_python1.py -------------- 1
+-> Introduction
+    * flaky Tests
+-> Trace Viewer
+-> Playwright Commands
+
+playwright_python2.py -------------- 2
+-> Locators
+    CSS Selector
+    Xpath: relative xpath, absolute xpath
+
+playwright_python3.py -------------- 3
+    -> Working with dropdowns
+
+playwright_python4.py -------------- 4
+    -> Radio Buttons
+    -> Checkbox
+
+playwright_python5.py -------------- 5
+    -> Alert/Dialogue Box
+
+playwright_python6.py -------------- 6
+    -> Windows handling/ Pages Handling
+
+playwright_python7.py -------------- 7
+    -> Cookies
+    -> Caches
+    -> Screenshot
+
+playwright_python8.py -------------- 8
+    -> Actions
+        -> Keyboard actions
+        -> Mouse actions
+
+playwright_python9.py -------------- 9
+    -> To get all the text from the page.
+
+playwright_python10.py -------------- 10
+    -> Exception Handling
+
+playwright_python11.py -------------- 11
+    -> Web Tabel
