@@ -134,6 +134,7 @@ Optional steps:
 -------------------------------------
 | git add .                         |
 | git commit -m "Save current work" |
+| git push                          |
 -------------------------------------
 
 git checkout main
