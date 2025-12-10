@@ -2,7 +2,7 @@
     Meaning: Change Directory — used to move into the folder (project) where your code is located.
     Example: cd C:\Users\Ashok\PycharmProjects\MyProject
 
-🧾 2️⃣ git add ./filenames
+🧾 2️⃣ git add filenames/foldernames
             or
       git add .
     Meaning: Adds files from your working directory to the staging area, preparing them for commit.
@@ -46,19 +46,35 @@
     feature-login → your branch name
 
 10. To Restore/remove from staging (if you accidentally added wrong file)
-    Syntax: $ git restore --staged <file_name>
-    EX: $ git restore --staged TestingConcepts/python_for_testers15.py
+    Syntax: git restore --staged <file_name>
+    EX: git restore --staged TestingConcepts/python_for_testers15.py
 
 12. git fetch:
     Syntax: git fetch origin
-    git fetch downloads the latest changes from all remote branches and updates your remote-tracking branches in your local repository.
-    It does not modify your current working branch — you must merge or rebase to apply the changes.
+    git fetch gets the latest updates from GitHub but does not change your working files (Local Main).
+    It only updates the origin/* references. To apply those updates, you must merge/rebase manually.
+
+    Ex: Before Git Fetch:
+    local main:       A — B — C
+    origin/main:      A — B — C
+
+    Ex: After Git Fetch:
+    local main:  A — B — C          (still old)
+    origin/main: A — B — C — D — E  (updated)
 
 13. git pull:
     Downloads commits from the remote repository and immediately merges them into your current branch.
     Equivalent to git fetch + git merge in one step
     Updates your working files immediately
     Could lead to merge conflicts if local changes differ from remote
+
+    Ex: Before Git Pull:
+    local main:       A — B — C
+    origin/main:      A — B — C
+
+    Ex: After Git Pull:
+    local main:  A — B — C — D — E  (updated)
+    origin/main: A — B — C — D — E  (UPDATED)
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -162,7 +178,6 @@ git pull origin main    # ensure main is up to date
 git merge feature-login # bring feature branch changes into main
 git push origin main    # push merged code to GitHub
 
-
 Deleting Branches in Local as well as remote (if required):
 ===========================================================
 Delete Local branch you don't want:
@@ -170,7 +185,6 @@ git branch -D <feature_branch/sub_branch>                      [Ex: feature/dumm
 
 Delete remote branches you don’t want:
 git push origin --delete <feature_branch/sub_branch>           [Ex: feature/dummy-testmodule]
-
 
 Renaming the Branch:
 ===========================================================
