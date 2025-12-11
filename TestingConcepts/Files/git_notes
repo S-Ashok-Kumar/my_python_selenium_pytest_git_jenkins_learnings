@@ -88,7 +88,7 @@ Prerequisite:
 push your local code to GitHub for the first time:
 ==================================================
 1. Go to your project folder
-Syntax: cd path/to/your/project
+Syntax: cd path/to/your/project     (Change Forward slashes "/" with backward slashes "\")
 EX: cd C:\Users\Ashok\PycharmProjects\MyProject
 
 2. Initialize Git (if not already done) - This makes your local folder a Git repository.
@@ -158,8 +158,7 @@ git pull origin main        #It fetches the latest changes from the remote main 
 git checkout feature-login
 git merge main              # merge main → feature     # bring main branch changes into your feature branch
 
-Meaning: You are pulling all new updates from the main branch (done by others)
-and merging them into your working branch feature-login.
+Meaning: You are pulling all new updates from the main branch (done by others) and merging them into your working branch feature-login.
 
 ✅ 2️⃣ Update main branch with changes from feature branch
 ==========================================================
