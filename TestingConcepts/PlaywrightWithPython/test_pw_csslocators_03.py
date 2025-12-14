@@ -32,7 +32,7 @@ negation: p:not([id='para1'])
 """
 
 import pytest
-from playwright.async_api import Page, expect
+from playwright.sync_api import Page, expect
 
 
 def test_verify_css_locators(page: Page):

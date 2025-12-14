@@ -1,0 +1,82 @@
+Google Drive Links:
+------------------------------------------------------------------------------------------------------------------------
+get_by_role():  https://drive.google.com/file/d/1ehh4vfWVdzLAQR8fka-wL31QDVlQWdu6/view?usp=drive_link
+CSS Selectors:  https://drive.google.com/file/d/1LoJuWrIiSqkBP4yPAoD4iZKbmDgIPuvf/view?usp=drive_link
+X-Paths:        https://drive.google.com/file/d/1ZXRQSWxcWlDTjWBHLEWA6a4juASkUs9C/view?usp=drive_link
+IMP Methods:    https://drive.google.com/file/d/1XHvFMWU0U-N6Dr1gKbOzrW4Ziz4aHvAd/view?usp=drive_link
+
+Important Keywords/methods:
+------------------------------------------------------------------------------------------------------------------------
+page.goto("<url>")                                      → Navigates to the given website URL.
+page.url                                                → Returns the current URL of the webpage.
+page.title()                                            → Returns the title of the page.
+page.wait_for_timeout(<milliseconds>)                   → Waits for the given time (in milliseconds).
+time.sleep(<seconds>)                                   → Python’s built-in sleep. Takes seconds.
+page.get_by_text(re.compile(".*Welcome.*"))             → Locates element using Regular Expressions.
+.fill("<value>")                                        → Enters the given value into an input field/textbox.
+.locator("<locator>")                                   → Finds elements on the webpage. Accepts **CSS and XPath**.
+.count()                                                → Returns how many elements match a locator.
+.text_content()                                         → Returns the text inside the element.
+.first.text_content()                                   → Returns the text of the **first** matching element.
+.last.text_content()                                    → Returns the text of the **last** matching element.
+.nth(3).text_content()                                  → Returns the text of the element at index 3. (index starts from 0)
+.all_text_contents()                                    → Returns a list of text from all matching elements.
+.click()                                                → Clicks the element.
+.get_attribute("<attribute>")                           → Returns the value of the given attribute.
+.input_value()                                          → Returns the current value of an input field.
+.check()                                                → Selects/checks a checkbox or radio button. (Ignores if already checked)
+.uncheck()                                              → Unchecks a checkbox.
+.is_checked()                                           → Returns True if checkbox/radio is checked, else False.
+
+.select_option("India")                                 → Selects dropdown option(s) by label.
+.select_option(label="India")
+.select_option(label=["Red", "Blue", "Green"])
+
+.select_option("germany")                               → Selects dropdown option(s) by value.
+.select_option(value="germany")
+.select_option(value=["Red", "White", "Green"])
+
+.select_option(index=4)                                 → Selects dropdown option(s) by index.
+.select_option(index=[2, 4])
+
+Differences:
+-------------------
+inner_text() vs text_content():
+    inner_text()      → Returns the visible and cleaned text users can see.
+    text_content()    → Returns the raw text including whitespace, hidden text, and special chars.
+
+all_inner_texts() vs all_text_contents()
+    all_inner_texts()      → List of visible, cleaned text.
+    all_text_contents()    → List of raw, uncleaned text.
+
+all()
+    → Returns list of ElementHandles (not text)
+    Ex:
+    elements = page.locator("div").all()
+    for el in elements:
+        print(el.text_content())
+
+Assertions:
+------------------------------------------------------------------------------------------------------------------------
+to_have_url()                           → URL matches expected value
+to_have_title()                         → Title matches expected value
+to_have_text()                          → Element text matches expected value
+to_have_count()                         → Number of matched elements matches
+to_have_attribute()                     → Attribute value matches
+
+to_be_visible()                         → Element is visible
+to_be_enabled()                         → Element is enabled
+
+expect(locator).to_be_checked()         → Should be checked
+expect(locator).not.to_be_checked()     → Should NOT be checked
+
+Playwright Inbuilt Locators:
+------------------------------------------------------------------------------------------------------------------------
+page.get_by_role()          to locate by explicit and implicit accessibility attributes.
+                            Gdrive link: https://drive.google.com/file/d/1ehh4vfWVdzLAQR8fka-wL31QDVlQWdu6/view?usp=drive_link
+page.get_by_text()          to locate by text content.
+page.get_by_label()         to locate a form control by associated label's text.
+page.get_by_placeholder()   to locate an input by placeholder.
+page.get_by_alt_text()      to locate an element, usually image, by its text alternative.
+page.get_by_title()         to locate an element by its title attribute.
+page.get_by_test_id()       to locate an element based on its data-testid attribute (other attributes can be configured).

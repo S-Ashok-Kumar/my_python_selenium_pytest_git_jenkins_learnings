@@ -24,29 +24,41 @@ def test_comparisonofmethods(page: Page):
     for i in range(count):
         print(products.nth(i).inner_text())  # Using inner_text()
 
-    print("---------------------------------")
+    print("---------------inner_text()------------------")
     for i in range(count):
         print(products.nth(i).text_content().strip())  # Using text_content()
+
+    print("---------------text_content()------------------")
 
     # all_inner_texts() vs all_text_contents()
     product_names = products.all_inner_texts()  # returns the list of actual text
     print(product_names)
 
+    print("---------------all_inner_text()------------------")
+
     product_names = products.all_text_contents()    # returns the list of content with special chars and spaces
     print(product_names)
+
+    print("---------------all_text_content() - Before stripping------------------")
+
     product_names = [text.strip() for text in product_names]
     print(product_names)
 
+    print("---------------all_text_content() - After stripping------------------")
+
     # all() Returns objects (ElementHandles)
     product_locators = products.all()
+    print("---------------all()------------------")
 
     for product_loc in product_locators:    # Without using range function
         print(product_loc.inner_text())
 
-    print("----------------------------------")
+    print("----------------all() - Without using range function------------------")
+
     for i in range(len(product_locators)):  # using range function
         print(product_locators[i].inner_text())
 
+    print("----------------all() - using range function------------------")
 
 """
 Methods:
