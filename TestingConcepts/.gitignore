@@ -1,0 +1,12 @@
+notepad .gitignore
+# Python cache
+__pycache__/
+*.pyc
+
+# Pytest / reports
+.pytest_cache/
+myreport.html
+
+# Allure reports
+allure-results/
+allurereports/
