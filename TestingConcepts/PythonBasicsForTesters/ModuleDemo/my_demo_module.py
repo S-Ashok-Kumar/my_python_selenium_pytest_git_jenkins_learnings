@@ -1,4 +1,4 @@
-from MyModule import my_custom_module
+from PythonBasicsForTesters.MyModule import my_custom_module
 from math import factorial
 
 my_custom_module.func1()
