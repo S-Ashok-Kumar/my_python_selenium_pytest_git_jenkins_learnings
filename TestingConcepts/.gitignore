@@ -1,4 +1,6 @@
 notepad .gitignore
+.idea/
+
 # Python cache
 __pycache__/
 *.pyc
